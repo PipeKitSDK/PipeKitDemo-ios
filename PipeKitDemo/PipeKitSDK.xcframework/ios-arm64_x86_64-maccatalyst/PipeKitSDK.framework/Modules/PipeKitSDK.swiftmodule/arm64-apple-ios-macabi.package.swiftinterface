@@ -1,0 +1,1021 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 6.2.4 effective-5.10 (swiftlang-6.2.4.1.4 clang-1700.6.4.2)
+// swift-module-flags: -target arm64-apple-ios16.0-macabi -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -enable-experimental-feature DebugDescriptionMacro -module-name PipeKitSDK -package-name pipekitsdk
+// swift-module-flags-ignorable: -no-verify-emitted-module-interface -formal-cxx-interoperability-mode=off -interface-compiler-version 6.2.4
+import AVFoundation
+import AVKit
+import Combine
+import Foundation
+import Foundation/*.Bundle*/
+import Foundation/*.ProcessInfo*/
+import Foundation/*.URL*/
+import Network
+import ObjectiveC
+import Security
+import Swift
+import SwiftUI
+import UIKit
+import _AVKit_SwiftUI
+import _Concurrency
+import _StringProcessing
+import _SwiftConcurrencyShims
+public struct SessionReplayConfig {
+  public var enableVideoRecording: Swift.Bool
+  public var captureFrameRate: Swift.Int
+  public var jpegCompressionQuality: CoreFoundation.CGFloat
+  public var captureScale: CoreFoundation.CGFloat
+  public var videoBitrate: Swift.Int
+  public var maxStorageSize: Swift.Int
+  public var segmentDuration: Swift.Double
+  public var captureTouches: Swift.Bool
+  public var showTouchIndicators: Swift.Bool
+  public var maskSensitiveViews: Swift.Bool
+  public var sensitiveViewMaskColor: SwiftUICore.Color
+  public var autoMaskTextFields: Swift.Bool
+  public var autoMaskSecureTextFields: Swift.Bool
+  public var autoMaskViewClasses: [Swift.String]
+  public var storageDirectory: Foundation.URL
+  public var autoStartOnLaunch: Swift.Bool
+  public var autoStopOnBackground: Swift.Bool
+  public var autoStopOnTerminate: Swift.Bool
+  public var enableCrashRecovery: Swift.Bool
+  public var crashRecoveryInterval: Swift.Double
+  public var debugLogging: Swift.Bool
+  public init()
+}
+public struct SessionLoggerConfig {
+  public var captureConsoleLogs: Swift.Bool
+  public var captureNetworkRequests: Swift.Bool
+  public var minimumLogLevel: PipeKitSDK.LogLevel
+  public var maxLogMessageLength: Swift.Int
+  public var maxBodySize: Swift.Int
+  public var redactedHeaders: Swift.Set<Swift.String>
+  public var excludedURLPatterns: [Swift.String]
+  public var logSanitizer: ((Swift.String) -> Swift.String)?
+  public var excludeSDKLogs: Swift.Bool
+  public init()
+}
+public struct CapturedTouchEvent : Swift.Codable {
+  public let timestamp: Foundation.TimeInterval
+  public let phase: Swift.Int
+  public let location: CoreFoundation.CGPoint
+  public let tapCount: Swift.Int
+  public let force: CoreFoundation.CGFloat
+  public let radius: CoreFoundation.CGFloat
+  public let type: Swift.Int
+  public let screenName: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(timestamp: Foundation.TimeInterval, phase: Swift.Int, location: CoreFoundation.CGPoint, tapCount: Swift.Int, force: CoreFoundation.CGFloat, radius: CoreFoundation.CGFloat, type: Swift.Int, screenName: Swift.String? = nil)
+  #endif
+  public var phaseDescription: Swift.String {
+    get
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ReplaySession : Swift.Codable, Swift.Identifiable {
+  public let sessionId: Swift.String
+  public let startTime: Foundation.Date
+  public var endTime: Foundation.Date?
+  public var touchEvents: [PipeKitSDK.CapturedTouchEvent]?
+  public var videoSegments: [Swift.String]
+  public var frameCount: Swift.Int?
+  public var id: Swift.String {
+    get
+  }
+  public init(sessionId: Swift.String = UUID().uuidString)
+  public typealias ID = Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum LogLevel : Swift.String, Swift.Codable, Swift.Comparable {
+  case debug
+  case info
+  case warning
+  case error
+  public var priority: Swift.Int {
+    get
+  }
+  public static func < (lhs: PipeKitSDK.LogLevel, rhs: PipeKitSDK.LogLevel) -> Swift.Bool
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public struct LogEntry : Swift.Codable {
+  public let timestamp: Foundation.TimeInterval
+  public let absoluteTime: Foundation.Date
+  public let level: PipeKitSDK.LogLevel
+  public let message: Swift.String
+  public let source: Swift.String
+  public let threadName: Swift.String?
+  public let attributes: [Swift.String : Swift.String]?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(timestamp: Foundation.TimeInterval, absoluteTime: Foundation.Date, level: PipeKitSDK.LogLevel, message: Swift.String, source: Swift.String, threadName: Swift.String? = nil, attributes: [Swift.String : Swift.String]? = nil)
+  #endif
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct NetworkEntry : Swift.Codable {
+  public let id: Swift.String
+  public let timestamp: Foundation.TimeInterval
+  public let absoluteTime: Foundation.Date
+  public let method: Swift.String
+  public let url: Swift.String
+  public let requestHeaders: [Swift.String : Swift.String]?
+  public let requestBody: Swift.String?
+  public let requestBodySize: Swift.Int?
+  public let statusCode: Swift.Int?
+  public let responseHeaders: [Swift.String : Swift.String]?
+  public let responseBody: Swift.String?
+  public let responseBodySize: Swift.Int?
+  public let duration: Foundation.TimeInterval?
+  public let error: Swift.String?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(id: Swift.String, timestamp: Foundation.TimeInterval, absoluteTime: Foundation.Date, method: Swift.String, url: Swift.String, requestHeaders: [Swift.String : Swift.String]? = nil, requestBody: Swift.String? = nil, requestBodySize: Swift.Int? = nil, statusCode: Swift.Int? = nil, responseHeaders: [Swift.String : Swift.String]? = nil, responseBody: Swift.String? = nil, responseBodySize: Swift.Int? = nil, duration: Foundation.TimeInterval? = nil, error: Swift.String? = nil)
+  #endif
+  public var curlCommand: Swift.String {
+    get
+  }
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct ScreenTransition : Swift.Codable {
+  public let timestamp: Foundation.TimeInterval
+  public let fromScreen: Swift.String?
+  public let toScreen: Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(timestamp: Foundation.TimeInterval, fromScreen: Swift.String?, toScreen: Swift.String)
+  #endif
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct SessionMetadata : Swift.Codable {
+  public let appVersion: Swift.String
+  public let buildNumber: Swift.String
+  public let osVersion: Swift.String
+  public let deviceModel: Swift.String
+  public let deviceId: Swift.String?
+  public let locale: Swift.String
+  public let timezone: Swift.String
+  public var userInfo: [Swift.String : Swift.String]?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(appVersion: Swift.String, buildNumber: Swift.String, osVersion: Swift.String, deviceModel: Swift.String, deviceId: Swift.String?, locale: Swift.String, timezone: Swift.String, userInfo: [Swift.String : Swift.String]? = nil)
+  #endif
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct SessionReplayData : Swift.Codable, Swift.Identifiable {
+  public let sessionId: Swift.String
+  public let startTime: Foundation.Date
+  public let endTime: Foundation.Date
+  public let durationMs: Foundation.TimeInterval
+  public let videoSegments: [Swift.String]
+  public let frameCount: Swift.Int
+  public let touches: [PipeKitSDK.CapturedTouchEvent]
+  public let logs: [PipeKitSDK.LogEntry]
+  public let networkRequests: [PipeKitSDK.NetworkEntry]
+  public let screenTransitions: [PipeKitSDK.ScreenTransition]
+  public let metadata: PipeKitSDK.SessionMetadata
+  public var userInfo: [Swift.String : Swift.String]?
+  public var id: Swift.String {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(sessionId: Swift.String, startTime: Foundation.Date, endTime: Foundation.Date, durationMs: Foundation.TimeInterval, videoSegments: [Swift.String], frameCount: Swift.Int, touches: [PipeKitSDK.CapturedTouchEvent], logs: [PipeKitSDK.LogEntry], networkRequests: [PipeKitSDK.NetworkEntry], screenTransitions: [PipeKitSDK.ScreenTransition], metadata: PipeKitSDK.SessionMetadata, userInfo: [Swift.String : Swift.String]? = nil)
+  #endif
+  public func toJSON() throws -> Foundation.Data
+  public func toJSONString() throws -> Swift.String
+  public typealias ID = Swift.String
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public struct SessionLogData : Swift.Codable {
+  public let sessionId: Swift.String
+  public let startTime: Foundation.Date
+  public let endTime: Foundation.Date
+  public let logs: [PipeKitSDK.LogEntry]
+  public let networkRequests: [PipeKitSDK.NetworkEntry]
+  public var duration: Foundation.TimeInterval {
+    get
+  }
+  public init(sessionId: Swift.String, startTime: Foundation.Date, endTime: Foundation.Date, logs: [PipeKitSDK.LogEntry], networkRequests: [PipeKitSDK.NetworkEntry])
+  public func toJSON() throws -> Foundation.Data
+  public func save(to url: Foundation.URL) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+@_hasMissingDesignatedInitializers final public class SessionReplayManager {
+  public static let shared: PipeKitSDK.SessionReplayManager
+  final public var config: PipeKitSDK.SessionReplayConfig {
+    get
+  }
+  final public var logConfig: PipeKitSDK.SessionLoggerConfig {
+    get
+  }
+  final public var isRecording: Swift.Bool {
+    get
+  }
+  final public var currentSession: PipeKitSDK.ReplaySession? {
+    get
+  }
+  weak final public var uploadDelegate: (any PipeKitSDK.SessionUploadDelegate)?
+  final public var userInfo: [Swift.String : Swift.String] {
+    get
+  }
+  final public func configure(_ config: PipeKitSDK.SessionReplayConfig)
+  final public func configure(_ videoConfig: PipeKitSDK.SessionReplayConfig, logConfig: PipeKitSDK.SessionLoggerConfig)
+  final public func setUserInfo(_ info: [Swift.String : Swift.String])
+  final public func setUserInfo(key: Swift.String, value: Swift.String)
+  final public func clearUserInfo()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func identifyUser(userId: Swift.String, email: Swift.String? = nil, name: Swift.String? = nil, additionalInfo: [Swift.String : Swift.String]? = nil)
+  #endif
+  final public func startSession()
+  final public func stopSession()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func stopSession(completion: (() -> Swift.Void)?)
+  #endif
+  @available(iOS 13.0, *)
+  final public func stopSessionAsync() async
+  final public func recordTouchEvent(_ touch: UIKit.UITouch, in window: UIKit.UIWindow)
+  final public func trackScreen(_ screenName: Swift.String)
+  final public func getSavedSessions() -> [PipeKitSDK.SessionReplayData]
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func getVideoURL(for session: PipeKitSDK.SessionReplayData, segmentIndex: Swift.Int = 0) -> Foundation.URL?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func getJSONURL(for session: PipeKitSDK.SessionReplayData) -> Foundation.URL?
+  #endif
+  final public func deleteSession(_ session: PipeKitSDK.SessionReplayData)
+  final public func recoverIncompleteSessions() -> [Swift.String]
+  @discardableResult
+  final public func finalizeRecoveredSessions() -> [Swift.String]
+  @objc deinit
+}
+final public class FlagDescriptor : Swift.Identifiable, Swift.Sendable {
+  final public let id: Swift.String
+  final public let displayName: Swift.String
+  final public let valueType: PipeKitSDK.FlagValueType
+  final public let defaultValue: PipeKitSDK.FlagValue
+  public init(id: Swift.String, displayName: Swift.String, valueType: PipeKitSDK.FlagValueType, defaultValue: PipeKitSDK.FlagValue)
+  public typealias ID = Swift.String
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class FlagStore : Foundation.ObservableObject {
+  public static let shared: PipeKitSDK.FlagStore
+  final public func register(_ descriptor: PipeKitSDK.FlagDescriptor)
+  final public func value<T>(for key: Swift.String, default defaultValue: T) -> T
+  final public func setLocal<T>(for key: Swift.String, value: T)
+  final public func applyRemoteOverrides(_ flags: [Swift.String : PipeKitSDK.FlagValue])
+  final public func applyRemoteOverride(key: Swift.String, value: PipeKitSDK.FlagValue)
+  final public func removeRemoteOverride(key: Swift.String)
+  final public func allDescriptors() -> [PipeKitSDK.FlagDescriptor]
+  final public func allCurrentValues() -> [Swift.String : PipeKitSDK.FlagValue]
+  final public func clearRemoteOverrides()
+  final public func reset()
+  final public func observeChanges(handler: @escaping () -> Swift.Void) -> Combine.AnyCancellable
+  final public func observe<T>(_ key: Swift.String, default defaultValue: T, handler: @escaping (T) -> Swift.Void) -> Combine.AnyCancellable
+  public typealias ObjectWillChangePublisher = Combine.ObservableObjectPublisher
+  @objc deinit
+}
+public enum FlagValueType : Swift.String, Swift.Codable, Swift.Sendable {
+  case bool
+  case int
+  case double
+  case string
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init?(rawValue: Swift.String)
+  #endif
+  public typealias RawValue = Swift.String
+  public var rawValue: Swift.String {
+    get
+  }
+}
+public enum FlagValue : Swift.Codable, Swift.Sendable, Swift.Equatable {
+  case bool(Swift.Bool)
+  case int(Swift.Int)
+  case double(Swift.Double)
+  case string(Swift.String)
+  public var type: PipeKitSDK.FlagValueType {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var asBool: Swift.Bool? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var asInt: Swift.Int? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var asDouble: Swift.Double? {
+    get
+  }
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var asString: Swift.String? {
+    get
+  }
+  #endif
+  public init(from decoder: any Swift.Decoder) throws
+  public func encode(to encoder: any Swift.Encoder) throws
+  public var jsonRepresentation: [Swift.String : Any] {
+    get
+  }
+  public static func == (a: PipeKitSDK.FlagValue, b: PipeKitSDK.FlagValue) -> Swift.Bool
+}
+@_Concurrency.MainActor @preconcurrency public struct _PipeFlagTrigger : SwiftUICore.DynamicProperty {
+  @SwiftUICore.ObservedObject @_projectedValueProperty($store) @_Concurrency.MainActor @preconcurrency public var store: PipeKitSDK.FlagStore {
+    get
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    set
+    @available(iOS 13.0, tvOS 13.0, watchOS 6.0, macOS 10.15, *)
+    _modify
+  }
+  @_Concurrency.MainActor @preconcurrency public var $store: SwiftUICore.ObservedObject<PipeKitSDK.FlagStore>.Wrapper {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public init()
+}
+public enum PipeKitError : Swift.Error, Foundation.LocalizedError, Swift.Sendable {
+  case nodeNotFound(id: Swift.String)
+  case missingInput(key: Swift.String, expectedType: Swift.String, availableKeys: [Swift.String])
+  case typeMismatch(expected: Swift.String, got: Swift.String)
+  case timeout(seconds: Foundation.TimeInterval)
+  case cancelled
+  case invalidJSON
+  case validationFailed(reasons: [Swift.String])
+  case custom(Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var errorDescription: Swift.String? {
+    get
+  }
+  #endif
+}
+final public class Flow : @unchecked Swift.Sendable {
+  final public let id: Swift.String
+  final public let name: Swift.String
+  final public var steps: [PipeKitSDK.FlowStep] {
+    get
+  }
+  final public var metadata: [Swift.String : Swift.String]
+  public init(_ name: Swift.String, id: Swift.String = UUID().uuidString, metadata: [Swift.String : Swift.String] = [:])
+  public init(_ name: Swift.String, id: Swift.String = UUID().uuidString, metadata: [Swift.String : Swift.String] = [:], @PipeKitSDK.FlowBuilder builder: () -> [PipeKitSDK.FlowStep])
+  @discardableResult
+  final public func pipe(_ nodeId: Swift.String) -> PipeKitSDK.Flow
+  @discardableResult
+  final public func pipe(_ nodeId: Swift.String, inputs: [Swift.String : Swift.String] = [:], outputs: [Swift.String : Swift.String] = [:]) -> PipeKitSDK.Flow
+  @discardableResult
+  final public func pipeIf(_ condition: PipeKitSDK.ConditionalNode, then nodeId: Swift.String) -> PipeKitSDK.Flow
+  @discardableResult
+  final public func transform(_ id: Swift.String, _ block: @escaping @Sendable (PipeKitSDK.FlowContext) async throws -> Swift.Void) -> PipeKitSDK.Flow
+  @discardableResult
+  final public func delay(seconds: Foundation.TimeInterval) -> PipeKitSDK.Flow
+  final public func toJSON() throws -> Foundation.Data
+  public static func fromJSON(_ data: Foundation.Data) throws -> PipeKitSDK.Flow
+  @objc deinit
+}
+public struct FlowStep : Swift.Sendable {
+  public let nodeId: Swift.String
+  public var inputMapping: [Swift.String : Swift.String]
+  public var outputMapping: [Swift.String : Swift.String]
+  public var condition: PipeKitSDK.ConditionalNode?
+  public var inlineNode: PipeKitSDK.InlinePipeNode?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(nodeId: Swift.String, inputMapping: [Swift.String : Swift.String] = [:], outputMapping: [Swift.String : Swift.String] = [:], condition: PipeKitSDK.ConditionalNode? = nil, inlineNode: PipeKitSDK.InlinePipeNode? = nil)
+  #endif
+}
+@_functionBuilder public struct FlowBuilder {
+  public static func buildBlock(_ components: PipeKitSDK.FlowStep...) -> [PipeKitSDK.FlowStep]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func buildOptional(_ component: [PipeKitSDK.FlowStep]?) -> [PipeKitSDK.FlowStep]
+  #endif
+  public static func buildEither(first component: [PipeKitSDK.FlowStep]) -> [PipeKitSDK.FlowStep]
+  public static func buildEither(second component: [PipeKitSDK.FlowStep]) -> [PipeKitSDK.FlowStep]
+  public static func buildArray(_ components: [[PipeKitSDK.FlowStep]]) -> [PipeKitSDK.FlowStep]
+}
+public func Pipe(_ nodeId: Swift.String) -> PipeKitSDK.FlowStep
+public func Pipe(_ nodeId: Swift.String, inputs: [Swift.String : Swift.String] = [:], outputs: [Swift.String : Swift.String] = [:]) -> PipeKitSDK.FlowStep
+public func PipeIf(_ condition: PipeKitSDK.ConditionalNode, then nodeId: Swift.String) -> PipeKitSDK.FlowStep
+public func Transform(_ id: Swift.String, _ block: @escaping @Sendable (PipeKitSDK.FlowContext) async throws -> Swift.Void) -> PipeKitSDK.FlowStep
+final public class FlowContext {
+  final public let executionId: Swift.String
+  final public var log: [PipeKitSDK.FlowLogEntry] {
+    get
+  }
+  final public var metadata: [Swift.String : Swift.String]
+  final public let startedAt: Foundation.Date
+  final public var isCancelled: Swift.Bool {
+    get
+  }
+  public init(executionId: Swift.String = UUID().uuidString)
+  final public func set(_ key: Swift.String, value: Any)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func get<T>(_ key: Swift.String, as type: T.Type = T.self) -> T?
+  #endif
+  final public func input<T>(forKey key: Swift.String) throws -> T
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func setOutput(_ value: Any, nodeId: Swift.String? = nil)
+  #endif
+  final public func previousOutput<T>(as type: T.Type = T.self) throws -> T
+  final public func has(_ key: Swift.String) -> Swift.Bool
+  final public var keys: [Swift.String] {
+    get
+  }
+  final public func cancel()
+  final public func appendLog(_ entry: PipeKitSDK.FlowLogEntry)
+  final public func snapshot() -> [Swift.String : Swift.String]
+  @objc deinit
+}
+public enum FlowLogEntry : Swift.Sendable {
+  case nodeStarted(id: Swift.String, at: Foundation.Date = Date())
+  case nodeCompleted(id: Swift.String, duration: Foundation.TimeInterval)
+  case nodeFailed(id: Swift.String, error: Swift.String)
+  case setValue(key: Swift.String, type: Swift.String)
+  case cancelled
+  case custom(Swift.String)
+}
+extension PipeKitSDK.FlowLogEntry : Swift.CustomStringConvertible {
+  public var description: Swift.String {
+    get
+  }
+}
+final public class FlowEngine : @unchecked Swift.Sendable {
+  public struct Configuration : Swift.Sendable {
+    public var maxRetries: Swift.Int
+    public var retryDelay: Foundation.TimeInterval
+    public var nodeTimeout: Foundation.TimeInterval
+    public var continueOnFailure: Swift.Bool
+    public var verbose: Swift.Bool
+    public init(maxRetries: Swift.Int = 0, retryDelay: Foundation.TimeInterval = 1.0, nodeTimeout: Foundation.TimeInterval = 30.0, continueOnFailure: Swift.Bool = false, verbose: Swift.Bool = false)
+    public static let `default`: PipeKitSDK.FlowEngine.Configuration
+    public static let resilient: PipeKitSDK.FlowEngine.Configuration
+    public static let debug: PipeKitSDK.FlowEngine.Configuration
+  }
+  weak final public var delegate: (any PipeKitSDK.FlowEngineDelegate)?
+  final public let configuration: PipeKitSDK.FlowEngine.Configuration
+  public init(configuration: PipeKitSDK.FlowEngine.Configuration = .default)
+  @discardableResult
+  final public func run(_ flow: PipeKitSDK.Flow, with context: PipeKitSDK.FlowContext = FlowContext()) async throws -> PipeKitSDK.FlowResult
+  final public func cancel(executionId: Swift.String)
+  final public func cancelAll()
+  @objc deinit
+}
+public protocol FlowEngineDelegate : AnyObject {
+  func engine(_ engine: PipeKitSDK.FlowEngine, didStartFlow flow: PipeKitSDK.Flow, executionId: Swift.String)
+  func engine(_ engine: PipeKitSDK.FlowEngine, willExecuteNode nodeId: Swift.String, in flow: PipeKitSDK.Flow)
+  func engine(_ engine: PipeKitSDK.FlowEngine, didExecuteNode nodeId: Swift.String, in flow: PipeKitSDK.Flow)
+  func engine(_ engine: PipeKitSDK.FlowEngine, nodeDidFail nodeId: Swift.String, in flow: PipeKitSDK.Flow, error: any Swift.Error)
+  func engine(_ engine: PipeKitSDK.FlowEngine, didCompleteFlow flow: PipeKitSDK.Flow, result: PipeKitSDK.FlowResult)
+}
+extension PipeKitSDK.FlowEngineDelegate {
+  public func engine(_ engine: PipeKitSDK.FlowEngine, didStartFlow flow: PipeKitSDK.Flow, executionId: Swift.String)
+  public func engine(_ engine: PipeKitSDK.FlowEngine, willExecuteNode nodeId: Swift.String, in flow: PipeKitSDK.Flow)
+  public func engine(_ engine: PipeKitSDK.FlowEngine, didExecuteNode nodeId: Swift.String, in flow: PipeKitSDK.Flow)
+  public func engine(_ engine: PipeKitSDK.FlowEngine, nodeDidFail nodeId: Swift.String, in flow: PipeKitSDK.Flow, error: any Swift.Error)
+  public func engine(_ engine: PipeKitSDK.FlowEngine, didCompleteFlow flow: PipeKitSDK.Flow, result: PipeKitSDK.FlowResult)
+}
+public struct FlowResult {
+  public let executionId: Swift.String
+  public let flowName: Swift.String
+  public let status: PipeKitSDK.FlowStatus
+  public let completedNodes: [Swift.String]
+  public let failedNodes: [(Swift.String, Swift.String)]
+  public let duration: Foundation.TimeInterval
+  public let context: PipeKitSDK.FlowContext
+  public var isSuccess: Swift.Bool {
+    get
+  }
+}
+public enum FlowStatus {
+  case success
+  case failed(any Swift.Error)
+  case cancelled
+}
+@_hasMissingDesignatedInitializers final public class FlowRegistry : @unchecked Swift.Sendable {
+  public static let shared: PipeKitSDK.FlowRegistry
+  final public func register(_ descriptor: PipeKitSDK.PipeNodeDescriptor)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func register(_ descriptor: PipeKitSDK.PipeNodeDescriptor, tags: [Swift.String] = [], category: Swift.String? = nil)
+  #endif
+  final public func unregister(id: Swift.String)
+  final public var availableNodes: [PipeKitSDK.PipeNodeDescriptor] {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func node(forId id: Swift.String) -> PipeKitSDK.PipeNodeDescriptor?
+  #endif
+  final public func search(_ query: Swift.String) -> [PipeKitSDK.PipeNodeDescriptor]
+  final public func nodes(taggedWith tag: Swift.String) -> [PipeKitSDK.PipeNodeDescriptor]
+  final public func nodes(inCategory category: Swift.String) -> [PipeKitSDK.PipeNodeDescriptor]
+  final public var allCategories: [Swift.String] {
+    get
+  }
+  final public var allTags: [Swift.String] {
+    get
+  }
+  final public var count: Swift.Int {
+    get
+  }
+  final public func printCatalog()
+  final public func discoverAll()
+  final public func reset()
+  @objc deinit
+}
+final public class FlowStorage : Swift.Sendable {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(directory: Foundation.URL? = nil)
+  #endif
+  final public func save(_ flow: PipeKitSDK.Flow) throws
+  final public func load(id: Swift.String) throws -> PipeKitSDK.Flow
+  final public func loadAll() throws -> [PipeKitSDK.Flow]
+  final public func delete(id: Swift.String) throws
+  final public func deleteAll() throws
+  final public func exists(id: Swift.String) -> Swift.Bool
+  final public func allFlowIds() throws -> [Swift.String]
+  final public func exportJSON(id: Swift.String) throws -> Swift.String
+  final public func importJSON(_ json: Swift.String) throws -> PipeKitSDK.Flow
+  @objc deinit
+}
+@attached(peer, names: prefixed(_rewire_)) public macro Rewire(_ name: Swift.String? = nil) = #externalMacro(
+    module: "PipeKitMacros",
+    type: "RewireMacro"
+)
+@attached(member, names: named(registerAllFlows), arbitrary) public macro FlowEntry() = #externalMacro(
+    module: "PipeKitMacros",
+    type: "FlowEntryMacro"
+)
+@attached(accessor) @attached(peer, names: prefixed(_pipeFlag_), arbitrary) public macro PipeFlag(_ name: Swift.String? = nil) = #externalMacro(
+    module: "PipeKitMacros",
+    type: "PipeFlagMacro"
+)
+final public class PipeKitRemote : @unchecked Swift.Sendable {
+  public struct Config : Swift.Sendable {
+    public let baseURL: Swift.String
+    public let appId: Swift.String
+    public var apiKey: Swift.String?
+    public var syncInterval: Foundation.TimeInterval
+    public var timeout: Foundation.TimeInterval
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init(baseURL: Swift.String, appId: Swift.String, apiKey: Swift.String? = nil, syncInterval: Foundation.TimeInterval = 60, timeout: Foundation.TimeInterval = 30)
+    #endif
+  }
+  weak final public var delegate: (any PipeKitSDK.PipeKitRemoteDelegate)?
+  final public let config: PipeKitSDK.PipeKitRemote.Config
+  final public let deviceId: Swift.String
+  public init(config: PipeKitSDK.PipeKitRemote.Config)
+  #if compiler(>=5.3) && $NonescapableTypes
+  convenience public init(baseURL: Swift.String, appId: Swift.String, apiKey: Swift.String? = nil)
+  #endif
+  public static func getOrCreateDeviceId() -> Swift.String
+  final public func registerDevice() async
+  @discardableResult
+  final public func sync() async throws -> [PipeKitSDK.Flow]
+  final public func reportNodes() async throws
+  final public func reportFlags() async throws
+  final public func pollAndExecute() async
+  final public func connectWebSocket()
+  final public func disconnectWebSocket()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func startAutoSync(interval: Foundation.TimeInterval? = nil)
+  #endif
+  final public func stopAutoSync()
+  final public var flows: [PipeKitSDK.Flow] {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func flow(id: Swift.String) -> PipeKitSDK.Flow?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func flow(named name: Swift.String) -> PipeKitSDK.Flow?
+  #endif
+  @objc deinit
+}
+public struct DeviceInfo : Swift.Sendable {
+  public let deviceId: Swift.String
+  public let deviceName: Swift.String
+  public let model: Swift.String
+  public let osVersion: Swift.String
+  public let appVersion: Swift.String
+  public let sdkVersion: Swift.String
+  public let bundleId: Swift.String
+  public static func current(deviceId: Swift.String) -> PipeKitSDK.DeviceInfo
+}
+public protocol PipeKitRemoteDelegate : AnyObject {
+  func remote(_ remote: PipeKitSDK.PipeKitRemote, didSync flows: [PipeKitSDK.Flow])
+  func remote(_ remote: PipeKitSDK.PipeKitRemote, didFailSync error: any Swift.Error)
+  func remote(_ remote: PipeKitSDK.PipeKitRemote, didExecuteRemotely flowName: Swift.String, success: Swift.Bool)
+}
+extension PipeKitSDK.PipeKitRemoteDelegate {
+  public func remote(_ remote: PipeKitSDK.PipeKitRemote, didSync flows: [PipeKitSDK.Flow])
+  public func remote(_ remote: PipeKitSDK.PipeKitRemote, didFailSync error: any Swift.Error)
+  public func remote(_ remote: PipeKitSDK.PipeKitRemote, didExecuteRemotely flowName: Swift.String, success: Swift.Bool)
+}
+public protocol PipeNode : Swift.Sendable {
+  var id: Swift.String { get }
+  var displayName: Swift.String { get }
+  func execute(context: PipeKitSDK.FlowContext) async throws
+}
+public struct NodeParam : Swift.Sendable {
+  public let name: Swift.String
+  public let type: Swift.String
+  public init(name: Swift.String, type: Swift.String)
+}
+final public class PipeNodeDescriptor : PipeKitSDK.PipeNode, @unchecked Swift.Sendable {
+  final public let id: Swift.String
+  final public let displayName: Swift.String
+  final public let parameters: Swift.String
+  final public let returnType: Swift.String
+  final public let isAsync: Swift.Bool
+  final public let isThrowing: Swift.Bool
+  final public let inputParams: [PipeKitSDK.NodeParam]
+  public init(id: Swift.String, displayName: Swift.String, parameters: Swift.String = "", returnType: Swift.String = "Void", isAsync: Swift.Bool = false, isThrowing: Swift.Bool = false, inputParams: [PipeKitSDK.NodeParam] = [], execute: @escaping @Sendable (PipeKitSDK.FlowContext) async throws -> Swift.Void)
+  final public func execute(context: PipeKitSDK.FlowContext) async throws
+  @objc deinit
+}
+final public class InlinePipeNode : PipeKitSDK.PipeNode, @unchecked Swift.Sendable {
+  final public let id: Swift.String
+  final public let displayName: Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(_ id: Swift.String, displayName: Swift.String? = nil, execute: @escaping @Sendable (PipeKitSDK.FlowContext) async throws -> Swift.Void)
+  #endif
+  final public func execute(context: PipeKitSDK.FlowContext) async throws
+  @objc deinit
+}
+final public class ConditionalNode : @unchecked Swift.Sendable {
+  final public let id: Swift.String
+  final public let displayName: Swift.String
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(_ id: Swift.String, displayName: Swift.String? = nil, condition: @escaping @Sendable (PipeKitSDK.FlowContext) async throws -> Swift.Bool)
+  #endif
+  final public func evaluate(context: PipeKitSDK.FlowContext) async throws -> Swift.Bool
+  @objc deinit
+}
+@_Concurrency.MainActor @preconcurrency public struct ScreenTrackingModifier : SwiftUICore.ViewModifier {
+  @_Concurrency.MainActor @preconcurrency public func body(content: PipeKitSDK.ScreenTrackingModifier.Content) -> some SwiftUICore.View
+  
+  public typealias Body = @_opaqueReturnTypeOf("$s10PipeKitSDK22ScreenTrackingModifierV4body7contentQr7SwiftUI05_ViewF8_ContentVyACG_tF", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct TouchIndicatorOverlay : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s10PipeKitSDK21TouchIndicatorOverlayV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct SessionReplayViewer : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init(session: PipeKitSDK.SessionReplayData)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s10PipeKitSDK19SessionReplayViewerV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct SessionsListView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s10PipeKitSDK16SessionsListViewV4bodyQrvp", 0) __
+}
+extension SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public func trackScreen(_ name: Swift.String) -> some SwiftUICore.View
+  
+  @_Concurrency.MainActor @preconcurrency public func withTouchIndicators() -> some SwiftUICore.View
+  
+  @_Concurrency.MainActor @preconcurrency public func sensitiveContent() -> some SwiftUICore.View
+  
+  @_Concurrency.MainActor @preconcurrency public func sensitiveContent(maskColor: SwiftUICore.Color) -> some SwiftUICore.View
+  
+}
+@_Concurrency.MainActor @preconcurrency public struct SensitiveContentModifier : SwiftUICore.ViewModifier {
+  @_Concurrency.MainActor @preconcurrency public init(maskColor: SwiftUICore.Color = .gray)
+  @_Concurrency.MainActor @preconcurrency public func body(content: PipeKitSDK.SensitiveContentModifier.Content) -> some SwiftUICore.View
+  
+  public typealias Body = @_opaqueReturnTypeOf("$s10PipeKitSDK24SensitiveContentModifierV4body7contentQr7SwiftUI05_Viewf1_E0VyACG_tF", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct RecordingControlView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s10PipeKitSDK20RecordingControlViewV4bodyQrvp", 0) __
+}
+public enum SDKActivityEntry : Swift.Identifiable {
+  case log(PipeKitSDK.LogEntry)
+  case network(PipeKitSDK.NetworkEntry)
+  public var id: Swift.String {
+    get
+  }
+  public var timestamp: Foundation.TimeInterval {
+    get
+  }
+  public typealias ID = Swift.String
+}
+@_Concurrency.MainActor @preconcurrency public struct ActivityTimelineView : SwiftUICore.View {
+  public enum ActivityFilterType : Swift.String, Swift.CaseIterable {
+    case all
+    case logs
+    case network
+    case errors
+    #if compiler(>=5.3) && $NonescapableTypes
+    public init?(rawValue: Swift.String)
+    #endif
+    public typealias AllCases = [PipeKitSDK.ActivityTimelineView.ActivityFilterType]
+    public typealias RawValue = Swift.String
+    nonisolated public static var allCases: [PipeKitSDK.ActivityTimelineView.ActivityFilterType] {
+      get
+    }
+    public var rawValue: Swift.String {
+      get
+    }
+  }
+  @_Concurrency.MainActor @preconcurrency public init(session: PipeKitSDK.SessionReplayData)
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s10PipeKitSDK20ActivityTimelineViewV4bodyQrvp", 0) __
+}
+@_Concurrency.MainActor @preconcurrency public struct LiveActivityView : SwiftUICore.View {
+  @_Concurrency.MainActor @preconcurrency public init()
+  @_Concurrency.MainActor @preconcurrency public var body: some SwiftUICore.View {
+    get
+  }
+  public typealias Body = @_opaqueReturnTypeOf("$s10PipeKitSDK16LiveActivityViewV4bodyQrvp", 0) __
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency open class SessionReplayViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency open var screenName: Swift.String {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic open func viewDidAppear(_ animated: Swift.Bool)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+public protocol SessionReplayMaskable {
+  var shouldMaskInReplay: Swift.Bool { get }
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class MaskedView : UIKit.UIView, PipeKitSDK.SessionReplayMaskable {
+  @_Concurrency.MainActor @preconcurrency public var shouldMaskInReplay: Swift.Bool
+  @_Concurrency.MainActor @preconcurrency public var maskColor: UIKit.UIColor
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func draw(_ rect: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+extension UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency public func markAsSensitive()
+  @_Concurrency.MainActor @preconcurrency public var isSensitive: Swift.Bool {
+    get
+  }
+  @_Concurrency.MainActor @preconcurrency public func captureSnapshot(afterScreenUpdates: Swift.Bool = false) -> UIKit.UIImage
+}
+extension UIKit.UIWindow {
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency public var visibleViewController: UIKit.UIViewController? {
+    get
+  }
+  #endif
+}
+@objc @_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @_Concurrency.MainActor @preconcurrency public class TouchVisualizationView : UIKit.UIView {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(frame: CoreFoundation.CGRect)
+  @_Concurrency.MainActor @preconcurrency public func updateTouches(_ touches: Swift.Set<UIKit.UITouch>)
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor @preconcurrency public class SessionReplayDebugViewController : UIKit.UIViewController {
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func viewDidLoad()
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public func viewWillDisappear(_ animated: Swift.Bool)
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  @_Concurrency.MainActor @preconcurrency @objc required dynamic public init?(coder: Foundation.NSCoder)
+  #endif
+  @objc deinit
+}
+@_hasMissingDesignatedInitializers final public class NetworkInterceptor {
+  public static let shared: PipeKitSDK.NetworkInterceptor
+  @objc deinit
+}
+public struct PipeKitConfig : Swift.Sendable {
+  public var enableSessionReplay: Swift.Bool
+  public var enableFlows: Swift.Bool
+  public var captureNetwork: Swift.Bool
+  public var captureConsoleLogs: Swift.Bool
+  public var videoConfig: PipeKitSDK.SessionReplayConfig
+  public var logConfig: PipeKitSDK.SessionLoggerConfig
+  public init(enableSessionReplay: Swift.Bool = true, enableFlows: Swift.Bool = true, captureNetwork: Swift.Bool = true, captureConsoleLogs: Swift.Bool = true, videoConfig: PipeKitSDK.SessionReplayConfig = SessionReplayConfig(), logConfig: PipeKitSDK.SessionLoggerConfig = SessionLoggerConfig())
+}
+public enum PipeKit {
+  public static let version: Swift.String
+  public static let name: Swift.String
+  public static var isConfigured: Swift.Bool {
+    get
+  }
+  public static var remote: PipeKitSDK.PipeKitRemote? {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func configure(apiKey: Swift.String, baseURL: Swift.String = "https://pipekit.tech", appId: Swift.String? = nil, config: PipeKitSDK.PipeKitConfig = PipeKitConfig())
+  #endif
+  public static func start()
+  @discardableResult
+  public static func run(_ name: Swift.String, inputs: [Swift.String : Any] = [:], configuration: PipeKitSDK.FlowEngine.Configuration = .default, @PipeKitSDK.FlowBuilder builder: () -> [PipeKitSDK.FlowStep]) async throws -> PipeKitSDK.FlowResult
+  public static var nodes: [PipeKitSDK.PipeNodeDescriptor] {
+    get
+  }
+  public static func search(_ query: Swift.String) -> [PipeKitSDK.PipeNodeDescriptor]
+  public static func catalog()
+  public static func validate(_ flow: PipeKitSDK.Flow) -> [Swift.String]
+  public static var flags: [PipeKitSDK.FlagDescriptor] {
+    get
+  }
+  public static var flagValues: [Swift.String : PipeKitSDK.FlagValue] {
+    get
+  }
+  public static func syncFlags() async throws
+  public static func startSession()
+  public static func stopSession()
+  public static func stopSession(completion: @escaping () -> Swift.Void)
+  public static func stopSessionAsync() async
+  public static var isRecording: Swift.Bool {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static var currentSession: PipeKitSDK.ReplaySession? {
+    get
+  }
+  #endif
+  public static func getSavedSessions() -> [PipeKitSDK.SessionReplayData]
+  public static func deleteSession(_ session: PipeKitSDK.SessionReplayData)
+  public static func trackScreen(_ screenName: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func identifyUser(userId: Swift.String, email: Swift.String? = nil, name: Swift.String? = nil, additionalInfo: [Swift.String : Swift.String]? = nil)
+  #endif
+  public static func setUserInfo(_ info: [Swift.String : Swift.String])
+  public static func recoverIncompleteSessions() -> [Swift.String]
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func uploadSession(sessionId: Swift.String, completion: @escaping (Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func uploadAllSessions(completion: @escaping ([(Swift.String, Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>)]) -> Swift.Void)
+  #endif
+  public static var autoUploadEnabled: Swift.Bool {
+    get
+    set
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func log(_ message: Swift.String, level: PipeKitSDK.LogLevel = .info, attributes: [Swift.String : Swift.String]? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func error(_ message: Swift.String, attributes: [Swift.String : Swift.String]? = nil)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func warning(_ message: Swift.String, attributes: [Swift.String : Swift.String]? = nil)
+  #endif
+  public static func debug(_ message: Swift.String)
+  public static func info()
+}
+@_hasMissingDesignatedInitializers final public class SessionAutoUploader {
+  public static let shared: PipeKitSDK.SessionAutoUploader
+  final public var isEnabled: Swift.Bool
+  final public var deleteAfterUpload: Swift.Bool
+  final public func start(deleteAfterUpload: Swift.Bool = true)
+  final public func stop()
+  final public func onSessionSaved(sessionId: Swift.String)
+  @objc deinit
+}
+public struct SessionUploadConfig {
+  public var baseURL: Foundation.URL
+  public var apiKey: Swift.String?
+  public var additionalHeaders: [Swift.String : Swift.String]
+  public var maxRetries: Swift.Int
+  public var timeoutInterval: Swift.Double
+  public var compressBeforeUpload: Swift.Bool
+  public var deleteAfterUpload: Swift.Bool
+  public var chunkSize: Swift.Int
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(baseURL: Foundation.URL, apiKey: Swift.String? = nil)
+  #endif
+}
+public protocol SessionUploadDelegate : AnyObject {
+  func uploadDidStart(sessionId: Swift.String)
+  func uploadProgress(sessionId: Swift.String, progress: Swift.Double)
+  func uploadDidComplete(sessionId: Swift.String, response: PipeKitSDK.SessionUploadResponse)
+  func uploadDidFail(sessionId: Swift.String, error: any Swift.Error)
+}
+extension PipeKitSDK.SessionUploadDelegate {
+  public func uploadDidStart(sessionId: Swift.String)
+  public func uploadProgress(sessionId: Swift.String, progress: Swift.Double)
+  public func uploadDidComplete(sessionId: Swift.String, response: PipeKitSDK.SessionUploadResponse)
+  public func uploadDidFail(sessionId: Swift.String, error: any Swift.Error)
+}
+public struct SessionUploadResponse : Swift.Codable {
+  public let sessionId: Swift.String
+  public let videoURL: Swift.String?
+  public let metadataURL: Swift.String?
+  public let message: Swift.String?
+  public let timestamp: Foundation.Date?
+  #if compiler(>=5.3) && $NonescapableTypes
+  public init(sessionId: Swift.String, videoURL: Swift.String? = nil, metadataURL: Swift.String? = nil, message: Swift.String? = nil, timestamp: Foundation.Date? = nil)
+  #endif
+  public func encode(to encoder: any Swift.Encoder) throws
+  public init(from decoder: any Swift.Decoder) throws
+}
+public enum SessionUploadError : Foundation.LocalizedError {
+  case notConfigured
+  case sessionNotFound
+  case videoFileNotFound
+  case metadataFileNotFound
+  case networkError(any Swift.Error)
+  case serverError(statusCode: Swift.Int, message: Swift.String?)
+  case invalidResponse
+  case uploadCancelled
+  case maxRetriesExceeded
+  #if compiler(>=5.3) && $NonescapableTypes
+  public var errorDescription: Swift.String? {
+    get
+  }
+  #endif
+}
+public enum SessionUploadStatus {
+  case pending
+  case uploading(progress: Swift.Double)
+  case completed(response: PipeKitSDK.SessionUploadResponse)
+  case failed(error: any Swift.Error)
+  case cancelled
+}
+@_hasMissingDesignatedInitializers final public class SessionUploader {
+  public static let shared: PipeKitSDK.SessionUploader
+  weak final public var delegate: (any PipeKitSDK.SessionUploadDelegate)?
+  final public func configure(_ config: PipeKitSDK.SessionUploadConfig)
+  final public var isConfigured: Swift.Bool {
+    get
+  }
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func uploadSession(sessionId: Swift.String, completion: @escaping (Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func uploadSession(_ session: PipeKitSDK.SessionReplayData, completion: @escaping (Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func uploadFiles(sessionId: Swift.String, videoURL: Foundation.URL? = nil, jsonURL: Foundation.URL, completion: @escaping (Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  final public func cancelUpload(sessionId: Swift.String)
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func getUploadStatus(sessionId: Swift.String) -> PipeKitSDK.SessionUploadStatus?
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func uploadAllPendingSessions(completion: @escaping ([(Swift.String, Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>)]) -> Swift.Void)
+  #endif
+  @objc deinit
+}
+extension PipeKitSDK.SessionReplayManager {
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func uploadCurrentSession(completion: @escaping (Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func uploadSession(sessionId: Swift.String, completion: @escaping (Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>) -> Swift.Void)
+  #endif
+}
+final public class VideoWriter {
+  public init(outputURL: Foundation.URL, size: CoreFoundation.CGSize, bitrate: Swift.Int = 75_000)
+  final public func startWriting()
+  final public func addFrame(_ image: UIKit.UIImage)
+  final public func finishWriting(completion: @escaping () -> Swift.Void)
+  final public func finishWritingSync()
+  @objc deinit
+}
+extension PipeKitSDK.VideoWriter {
+  #if compiler(>=5.3) && $NonescapableTypes
+  public static func compressVideo(inputURL: Foundation.URL, outputURL: Foundation.URL, bitrate: Swift.Int = 75_000, completion: @escaping (Swift.Bool, (any Swift.Error)?) -> Swift.Void)
+  #endif
+}
+extension PipeKitSDK.LogLevel : Swift.Hashable {}
+extension PipeKitSDK.LogLevel : Swift.RawRepresentable {}
+extension PipeKitSDK.FlagValueType : Swift.Equatable {}
+extension PipeKitSDK.FlagValueType : Swift.Hashable {}
+extension PipeKitSDK.FlagValueType : Swift.RawRepresentable {}
+extension PipeKitSDK._PipeFlagTrigger : Swift.Sendable {}
+extension PipeKitSDK.ScreenTrackingModifier : Swift.Sendable {}
+extension PipeKitSDK.TouchIndicatorOverlay : Swift.Sendable {}
+extension PipeKitSDK.SessionReplayViewer : Swift.Sendable {}
+extension PipeKitSDK.SessionsListView : Swift.Sendable {}
+extension PipeKitSDK.SensitiveContentModifier : Swift.Sendable {}
+extension PipeKitSDK.RecordingControlView : Swift.Sendable {}
+extension PipeKitSDK.ActivityTimelineView : Swift.Sendable {}
+extension PipeKitSDK.ActivityTimelineView.ActivityFilterType : Swift.Equatable {}
+extension PipeKitSDK.ActivityTimelineView.ActivityFilterType : Swift.Hashable {}
+extension PipeKitSDK.ActivityTimelineView.ActivityFilterType : Swift.RawRepresentable {}
+extension PipeKitSDK.LiveActivityView : Swift.Sendable {}
