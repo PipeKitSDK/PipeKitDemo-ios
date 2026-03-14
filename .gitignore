@@ -1,0 +1,20 @@
+# Xcode build artifacts
+DerivedData/
+build/
+*.xcarchive
+
+# Xcode user data
+xcuserdata/
+*.xcuserstate
+*.xcworkspacedata
+.swiftpm/
+
+# macOS
+.DS_Store
+
+# Swift Package Manager
+.build/
+Package.resolved
+
+# Macro binary (built artifact)
+Macros/
