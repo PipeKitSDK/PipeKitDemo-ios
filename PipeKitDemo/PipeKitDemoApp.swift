@@ -25,7 +25,7 @@ struct PipeKitDemoApp: App {
             )
         )
 
-        PipeKit.identifyUser(userId: "my 17 pro max")
+        PipeKit.identifyUser(userId: UUID().uuidString, email: "jon@snow.com", name: "demo user")
 
         // Show what's registered
         PipeKit.catalog()
