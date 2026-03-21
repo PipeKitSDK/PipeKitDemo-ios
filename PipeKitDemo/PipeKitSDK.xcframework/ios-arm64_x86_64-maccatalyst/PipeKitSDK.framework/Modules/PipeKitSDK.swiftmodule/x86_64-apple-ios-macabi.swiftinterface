@@ -256,6 +256,19 @@ public struct SessionLogData : Swift.Codable {
   final public func finalizeRecoveredSessions() -> [Swift.String]
   @objc deinit
 }
+@_hasMissingDesignatedInitializers final public class UserIdentityStore : @unchecked Swift.Sendable {
+  public static let shared: PipeKitSDK.UserIdentityStore
+  final public var userInfo: [Swift.String : Swift.String] {
+    get
+  }
+  final public func setUserInfo(_ info: [Swift.String : Swift.String])
+  final public func setUserInfo(key: Swift.String, value: Swift.String)
+  final public func clearUserInfo()
+  #if compiler(>=5.3) && $NonescapableTypes
+  final public func identifyUser(userId: Swift.String, email: Swift.String? = nil, name: Swift.String? = nil, additionalInfo: [Swift.String : Swift.String]? = nil)
+  #endif
+  @objc deinit
+}
 final public class FlagDescriptor : Swift.Identifiable, Swift.Sendable {
   final public let id: Swift.String
   final public let displayName: Swift.String
@@ -860,11 +873,11 @@ public enum PipeKit {
   public static func getSavedSessions() -> [PipeKitSDK.SessionReplayData]
   public static func deleteSession(_ session: PipeKitSDK.SessionReplayData)
   public static func trackScreen(_ screenName: Swift.String)
+  public static func recoverIncompleteSessions() -> [Swift.String]
   #if compiler(>=5.3) && $NonescapableTypes
   public static func identifyUser(userId: Swift.String, email: Swift.String? = nil, name: Swift.String? = nil, additionalInfo: [Swift.String : Swift.String]? = nil)
   #endif
   public static func setUserInfo(_ info: [Swift.String : Swift.String])
-  public static func recoverIncompleteSessions() -> [Swift.String]
   #if compiler(>=5.3) && $NonescapableTypes
   public static func uploadSession(sessionId: Swift.String, completion: @escaping (Swift.Result<PipeKitSDK.SessionUploadResponse, any Swift.Error>) -> Swift.Void)
   #endif

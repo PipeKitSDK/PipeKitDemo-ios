@@ -19,9 +19,9 @@
 		A1000001000000000000000A /* UnifiedSessionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000A /* UnifiedSessionsView.swift */; };
 		A1000001000000000000000B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000B /* Assets.xcassets */; };
 		A1000001000000000000000C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000C /* Preview Assets.xcassets */; };
-		BCA627E62F64C5C5004A1722 /* PipeKitSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA627E22F64C589004A1722 /* PipeKitSDK.xcframework */; };
-		BCA627E72F64C5C5004A1722 /* PipeKitSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BCA627E22F64C589004A1722 /* PipeKitSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		BCA627F72F64C7CF004A1722 /* PipeKitMacros in Resources */ = {isa = PBXBuildFile; fileRef = BCA627F52F64C7CF004A1722 /* PipeKitMacros */; };
+		BCA627FB2F6797EC004A1722 /* PipeKitMacros in Resources */ = {isa = PBXBuildFile; fileRef = BCA627FA2F6797EC004A1722 /* PipeKitMacros */; };
+		BCA627FC2F67982F004A1722 /* PipeKitSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA627F82F6797DB004A1722 /* PipeKitSDK.xcframework */; };
+		BCA627FD2F67982F004A1722 /* PipeKitSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BCA627F82F6797DB004A1722 /* PipeKitSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BCA627E72F64C5C5004A1722 /* PipeKitSDK.xcframework in Embed Frameworks */,
+				BCA627FD2F67982F004A1722 /* PipeKitSDK.xcframework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,8 +52,8 @@
 		A2000001000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2000001000000000000000C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A2000001000000000000000D /* PipeKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BCA627E22F64C589004A1722 /* PipeKitSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PipeKitSDK.xcframework; sourceTree = "<group>"; };
-		BCA627F52F64C7CF004A1722 /* PipeKitMacros */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = PipeKitMacros; sourceTree = "<group>"; };
+		BCA627F82F6797DB004A1722 /* PipeKitSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PipeKitSDK.xcframework; sourceTree = "<group>"; };
+		BCA627FA2F6797EC004A1722 /* PipeKitMacros */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = PipeKitMacros; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCA627E62F64C5C5004A1722 /* PipeKitSDK.xcframework in Frameworks */,
+				BCA627FC2F67982F004A1722 /* PipeKitSDK.xcframework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,8 +79,8 @@
 		A40000010000000000000002 /* PipeKitDemo */ = {
 			isa = PBXGroup;
 			children = (
+				BCA627F82F6797DB004A1722 /* PipeKitSDK.xcframework */,
 				BCA627F62F64C7CF004A1722 /* Macros */,
-				BCA627E22F64C589004A1722 /* PipeKitSDK.xcframework */,
 				A20000010000000000000001 /* PipeKitDemoApp.swift */,
 				A20000010000000000000002 /* ContentView.swift */,
 				A40000010000000000000003 /* Flows */,
@@ -132,7 +132,7 @@
 		BCA627F62F64C7CF004A1722 /* Macros */ = {
 			isa = PBXGroup;
 			children = (
-				BCA627F52F64C7CF004A1722 /* PipeKitMacros */,
+				BCA627FA2F6797EC004A1722 /* PipeKitMacros */,
 			);
 			path = Macros;
 			sourceTree = "<group>";
@@ -201,7 +201,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000001000000000000000C /* Preview Assets.xcassets in Resources */,
-				BCA627F72F64C7CF004A1722 /* PipeKitMacros in Resources */,
+				BCA627FB2F6797EC004A1722 /* PipeKitMacros in Resources */,
 				A1000001000000000000000B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

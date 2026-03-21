@@ -10142,6 +10142,372 @@
         "name": "Foundation",
         "printedName": "Foundation",
         "declKind": "Import",
+        "moduleName": "PipeKitSDK",
+        "declAttributes": [
+          "RawDocComment"
+        ]
+      },
+      {
+        "kind": "TypeDecl",
+        "name": "UserIdentityStore",
+        "printedName": "UserIdentityStore",
+        "children": [
+          {
+            "kind": "Var",
+            "name": "shared",
+            "printedName": "shared",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "UserIdentityStore",
+                "printedName": "PipeKitSDK.UserIdentityStore",
+                "usr": "s:10PipeKitSDK17UserIdentityStoreC"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10PipeKitSDK17UserIdentityStoreC6sharedACvpZ",
+            "mangledName": "$s10PipeKitSDK17UserIdentityStoreC6sharedACvpZ",
+            "moduleName": "PipeKitSDK",
+            "static": true,
+            "declAttributes": [
+              "HasInitialValue",
+              "Final",
+              "HasStorage",
+              "AccessControl"
+            ],
+            "isLet": true,
+            "hasStorage": true,
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "UserIdentityStore",
+                    "printedName": "PipeKitSDK.UserIdentityStore",
+                    "usr": "s:10PipeKitSDK17UserIdentityStoreC"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10PipeKitSDK17UserIdentityStoreC6sharedACvgZ",
+                "mangledName": "$s10PipeKitSDK17UserIdentityStoreC6sharedACvgZ",
+                "moduleName": "PipeKitSDK",
+                "static": true,
+                "implicit": true,
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Var",
+            "name": "userInfo",
+            "printedName": "userInfo",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Var",
+            "usr": "s:10PipeKitSDK17UserIdentityStoreC8userInfoSDyS2SGvp",
+            "mangledName": "$s10PipeKitSDK17UserIdentityStoreC8userInfoSDyS2SGvp",
+            "moduleName": "PipeKitSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "accessors": [
+              {
+                "kind": "Accessor",
+                "name": "Get",
+                "printedName": "Get()",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "declKind": "Accessor",
+                "usr": "s:10PipeKitSDK17UserIdentityStoreC8userInfoSDyS2SGvg",
+                "mangledName": "$s10PipeKitSDK17UserIdentityStoreC8userInfoSDyS2SGvg",
+                "moduleName": "PipeKitSDK",
+                "declAttributes": [
+                  "Final"
+                ],
+                "accessorKind": "get"
+              }
+            ]
+          },
+          {
+            "kind": "Function",
+            "name": "setUserInfo",
+            "printedName": "setUserInfo(_:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Dictionary",
+                "printedName": "[Swift.String : Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  },
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:SD"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10PipeKitSDK17UserIdentityStoreC03setD4InfoyySDyS2SGF",
+            "mangledName": "$s10PipeKitSDK17UserIdentityStoreC03setD4InfoyySDyS2SGF",
+            "moduleName": "PipeKitSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "setUserInfo",
+            "printedName": "setUserInfo(key:value:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10PipeKitSDK17UserIdentityStoreC03setD4Info3key5valueySS_SStF",
+            "mangledName": "$s10PipeKitSDK17UserIdentityStoreC03setD4Info3key5valueySS_SStF",
+            "moduleName": "PipeKitSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "clearUserInfo",
+            "printedName": "clearUserInfo()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10PipeKitSDK17UserIdentityStoreC05clearD4InfoyyF",
+            "mangledName": "$s10PipeKitSDK17UserIdentityStoreC05clearD4InfoyyF",
+            "moduleName": "PipeKitSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
+            "name": "identifyUser",
+            "printedName": "identifyUser(userId:email:name:additionalInfo:)",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Void",
+                "printedName": "()"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "String",
+                "printedName": "Swift.String",
+                "usr": "s:SS"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "Swift.String?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              },
+              {
+                "kind": "TypeNominal",
+                "name": "Optional",
+                "printedName": "[Swift.String : Swift.String]?",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "Dictionary",
+                    "printedName": "[Swift.String : Swift.String]",
+                    "children": [
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      },
+                      {
+                        "kind": "TypeNominal",
+                        "name": "String",
+                        "printedName": "Swift.String",
+                        "usr": "s:SS"
+                      }
+                    ],
+                    "usr": "s:SD"
+                  }
+                ],
+                "hasDefaultArg": true,
+                "usr": "s:Sq"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10PipeKitSDK17UserIdentityStoreC08identifyD06userId5email4name14additionalInfoySS_SSSgAISDyS2SGSgtF",
+            "mangledName": "$s10PipeKitSDK17UserIdentityStoreC08identifyD06userId5email4name14additionalInfoySS_SSSgAISDyS2SGSgtF",
+            "moduleName": "PipeKitSDK",
+            "declAttributes": [
+              "Final",
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          }
+        ],
+        "declKind": "Class",
+        "usr": "s:10PipeKitSDK17UserIdentityStoreC",
+        "mangledName": "$s10PipeKitSDK17UserIdentityStoreC",
+        "moduleName": "PipeKitSDK",
+        "declAttributes": [
+          "Final",
+          "AccessControl",
+          "RawDocComment"
+        ],
+        "hasMissingDesignatedInitializers": true,
+        "conformances": [
+          {
+            "kind": "Conformance",
+            "name": "Copyable",
+            "printedName": "Copyable",
+            "usr": "s:s8CopyableP",
+            "mangledName": "$ss8CopyableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Escapable",
+            "printedName": "Escapable",
+            "usr": "s:s9EscapableP",
+            "mangledName": "$ss9EscapableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "Sendable",
+            "printedName": "Sendable",
+            "usr": "s:s8SendableP",
+            "mangledName": "$ss8SendableP"
+          },
+          {
+            "kind": "Conformance",
+            "name": "SendableMetatype",
+            "printedName": "SendableMetatype",
+            "usr": "s:s16SendableMetatypeP",
+            "mangledName": "$ss16SendableMetatypeP"
+          }
+        ]
+      },
+      {
+        "kind": "Import",
+        "name": "Foundation",
+        "printedName": "Foundation",
+        "declKind": "Import",
         "moduleName": "PipeKitSDK"
       },
       {
@@ -27029,6 +27395,37 @@
           },
           {
             "kind": "Function",
+            "name": "recoverIncompleteSessions",
+            "printedName": "recoverIncompleteSessions()",
+            "children": [
+              {
+                "kind": "TypeNominal",
+                "name": "Array",
+                "printedName": "[Swift.String]",
+                "children": [
+                  {
+                    "kind": "TypeNominal",
+                    "name": "String",
+                    "printedName": "Swift.String",
+                    "usr": "s:SS"
+                  }
+                ],
+                "usr": "s:Sa"
+              }
+            ],
+            "declKind": "Func",
+            "usr": "s:10PipeKitSDK0aB0O25recoverIncompleteSessionsSaySSGyFZ",
+            "mangledName": "$s10PipeKitSDK0aB0O25recoverIncompleteSessionsSaySSGyFZ",
+            "moduleName": "PipeKitSDK",
+            "static": true,
+            "declAttributes": [
+              "AccessControl",
+              "RawDocComment"
+            ],
+            "funcSelfKind": "NonMutating"
+          },
+          {
+            "kind": "Function",
             "name": "identifyUser",
             "printedName": "identifyUser(userId:email:name:additionalInfo:)",
             "children": [
@@ -27148,37 +27545,6 @@
             "declKind": "Func",
             "usr": "s:10PipeKitSDK0aB0O11setUserInfoyySDyS2SGFZ",
             "mangledName": "$s10PipeKitSDK0aB0O11setUserInfoyySDyS2SGFZ",
-            "moduleName": "PipeKitSDK",
-            "static": true,
-            "declAttributes": [
-              "AccessControl",
-              "RawDocComment"
-            ],
-            "funcSelfKind": "NonMutating"
-          },
-          {
-            "kind": "Function",
-            "name": "recoverIncompleteSessions",
-            "printedName": "recoverIncompleteSessions()",
-            "children": [
-              {
-                "kind": "TypeNominal",
-                "name": "Array",
-                "printedName": "[Swift.String]",
-                "children": [
-                  {
-                    "kind": "TypeNominal",
-                    "name": "String",
-                    "printedName": "Swift.String",
-                    "usr": "s:SS"
-                  }
-                ],
-                "usr": "s:Sa"
-              }
-            ],
-            "declKind": "Func",
-            "usr": "s:10PipeKitSDK0aB0O25recoverIncompleteSessionsSaySSGyFZ",
-            "mangledName": "$s10PipeKitSDK0aB0O25recoverIncompleteSessionsSaySSGyFZ",
             "moduleName": "PipeKitSDK",
             "static": true,
             "declAttributes": [
@@ -32259,6 +32625,13 @@
       "value": "\"[PipeKit] Touch event swizzling enabled\""
     },
     {
+      "filePath": "\/Users\/almoutasembellah\/Documents\/workSpace\/PipeKitProject\/PipeKitSDK\/Sources\/PipeKit\/Core\/UserIdentityStore.swift",
+      "kind": "Dictionary",
+      "offset": 627,
+      "length": 3,
+      "value": "[]"
+    },
+    {
       "filePath": "\/Users\/almoutasembellah\/Documents\/workSpace\/PipeKitProject\/PipeKitSDK\/Sources\/PipeKit\/Flags\/FlagStore.swift",
       "kind": "Dictionary",
       "offset": 863,
@@ -32534,14 +32907,14 @@
     {
       "filePath": "\/Users\/almoutasembellah\/Documents\/workSpace\/PipeKitProject\/PipeKitSDK\/Sources\/PipeKit\/Flows\/PipeKitRemote.swift",
       "kind": "IntegerLiteral",
-      "offset": 21057,
+      "offset": 21768,
       "length": 1,
       "value": "0"
     },
     {
       "filePath": "\/Users\/almoutasembellah\/Documents\/workSpace\/PipeKitProject\/PipeKitSDK\/Sources\/PipeKit\/Flows\/PipeKitRemote.swift",
       "kind": "IntegerLiteral",
-      "offset": 21091,
+      "offset": 21802,
       "length": 1,
       "value": "5"
     },
@@ -32949,7 +33322,7 @@
       "kind": "StringLiteral",
       "offset": 3147,
       "length": 7,
-      "value": "\"0.4.0\""
+      "value": "\"0.5.0\""
     },
     {
       "filePath": "\/Users\/almoutasembellah\/Documents\/workSpace\/PipeKitProject\/PipeKitSDK\/Sources\/PipeKit\/PipeKit.swift",
