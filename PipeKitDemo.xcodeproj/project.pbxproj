@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -19,9 +19,8 @@
 		A1000001000000000000000A /* UnifiedSessionsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000A /* UnifiedSessionsView.swift */; };
 		A1000001000000000000000B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000B /* Assets.xcassets */; };
 		A1000001000000000000000C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A2000001000000000000000C /* Preview Assets.xcassets */; };
-		BCA627FB2F6797EC004A1722 /* PipeKitMacros in Resources */ = {isa = PBXBuildFile; fileRef = BCA627FA2F6797EC004A1722 /* PipeKitMacros */; };
-		BCA627FC2F67982F004A1722 /* PipeKitSDK.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BCA627F82F6797DB004A1722 /* PipeKitSDK.xcframework */; };
-		BCA627FD2F67982F004A1722 /* PipeKitSDK.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = BCA627F82F6797DB004A1722 /* PipeKitSDK.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		BCB7B75F2F6F2FDC002A1851 /* PipeKitSDK in Frameworks */ = {isa = PBXBuildFile; productRef = BCB7B75E2F6F2FDC002A1851 /* PipeKitSDK */; };
+		BCB7B7602F6F2FDC002A1851 /* PipeKitSDK in Embed Frameworks */ = {isa = PBXBuildFile; productRef = BCB7B75E2F6F2FDC002A1851 /* PipeKitSDK */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,7 +30,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				BCA627FD2F67982F004A1722 /* PipeKitSDK.xcframework in Embed Frameworks */,
+				BCB7B7602F6F2FDC002A1851 /* PipeKitSDK in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -52,8 +51,6 @@
 		A2000001000000000000000B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A2000001000000000000000C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A2000001000000000000000D /* PipeKitDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PipeKitDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		BCA627F82F6797DB004A1722 /* PipeKitSDK.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = PipeKitSDK.xcframework; sourceTree = "<group>"; };
-		BCA627FA2F6797EC004A1722 /* PipeKitMacros */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.executable"; path = PipeKitMacros; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BCA627FC2F67982F004A1722 /* PipeKitSDK.xcframework in Frameworks */,
+				BCB7B75F2F6F2FDC002A1851 /* PipeKitSDK in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +69,7 @@
 			isa = PBXGroup;
 			children = (
 				A40000010000000000000002 /* PipeKitDemo */,
+				BCB7B75D2F6F2FDC002A1851 /* Frameworks */,
 				A40000010000000000000007 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -79,8 +77,6 @@
 		A40000010000000000000002 /* PipeKitDemo */ = {
 			isa = PBXGroup;
 			children = (
-				BCA627F82F6797DB004A1722 /* PipeKitSDK.xcframework */,
-				BCA627F62F64C7CF004A1722 /* Macros */,
 				A20000010000000000000001 /* PipeKitDemoApp.swift */,
 				A20000010000000000000002 /* ContentView.swift */,
 				A40000010000000000000003 /* Flows */,
@@ -129,12 +125,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		BCA627F62F64C7CF004A1722 /* Macros */ = {
+		BCB7B75D2F6F2FDC002A1851 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				BCA627FA2F6797EC004A1722 /* PipeKitMacros */,
 			);
-			path = Macros;
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -155,6 +150,7 @@
 			);
 			name = PipeKitDemo;
 			packageProductDependencies = (
+				BCB7B75E2F6F2FDC002A1851 /* PipeKitSDK */,
 			);
 			productName = PipeKitDemo;
 			productReference = A2000001000000000000000D /* PipeKitDemo.app */;
@@ -185,6 +181,7 @@
 			);
 			mainGroup = A40000010000000000000001;
 			packageReferences = (
+				BCB7B75A2F6F2F05002A1851 /* XCLocalSwiftPackageReference "../PipeKitSDK" */,
 			);
 			productRefGroup = A40000010000000000000007 /* Products */;
 			projectDirPath = "";
@@ -201,7 +198,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1000001000000000000000C /* Preview Assets.xcassets in Resources */,
-				BCA627FB2F6797EC004A1722 /* PipeKitMacros in Resources */,
 				A1000001000000000000000B /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -447,6 +443,21 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		BCB7B75A2F6F2F05002A1851 /* XCLocalSwiftPackageReference "../PipeKitSDK" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../PipeKitSDK;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		BCB7B75E2F6F2FDC002A1851 /* PipeKitSDK */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = BCB7B75A2F6F2F05002A1851 /* XCLocalSwiftPackageReference "../PipeKitSDK" */;
+			productName = PipeKitSDK;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = AB0000010000000000000001 /* Project object */;
 }

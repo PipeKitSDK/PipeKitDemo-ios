@@ -15,7 +15,7 @@ struct PipeKitDemoApp: App {
     init() {
         // All @FlowEntry types are auto-discovered — no manual registration needed.
         PipeKit.configure(
-            apiKey: "pk_live_YOUR_KEY",
+            apiKey: "pk_live_LH7N18khutYbG7w7-MDPrZJZ66NiWsjHUm5carpaLIM",
             baseURL: "https://pipekit.tech",
             config: PipeKitConfig(
                 enableSessionReplay: true,
