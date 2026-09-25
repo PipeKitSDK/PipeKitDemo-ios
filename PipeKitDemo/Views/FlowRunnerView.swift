@@ -41,6 +41,15 @@ struct FlowRunnerView: View {
     var body: some View {
         NavigationStack {
             List {
+                // Screen journeys: the dashboard arranges compiled screens
+                Section {
+                    SendMoneyLauncher()
+                } header: {
+                    Text("Journeys")
+                } footer: {
+                    Text("Screens are compiled in. The dashboard chooses which ones this journey shows, and in what order.")
+                }
+
                 // Param selectors
                 Section {
                     Picker("Student", selection: $selectedStudent) {

@@ -10,6 +10,7 @@
 		A10000010000000000000001 /* PipeKitDemoApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000001 /* PipeKitDemoApp.swift */; };
 		A10000010000000000000002 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000002 /* ContentView.swift */; };
 		A10000010000000000000003 /* DemoFlows.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000003 /* DemoFlows.swift */; };
+		A10000010000000000000020 /* SendMoneyJourney.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000020 /* SendMoneyJourney.swift */; };
 		A10000010000000000000004 /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000004 /* Components.swift */; };
 		A10000010000000000000005 /* DataBrowserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000005 /* DataBrowserView.swift */; };
 		A10000010000000000000006 /* FlowRunnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A20000010000000000000006 /* FlowRunnerView.swift */; };
@@ -41,6 +42,7 @@
 		A20000010000000000000001 /* PipeKitDemoApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PipeKitDemoApp.swift; sourceTree = "<group>"; };
 		A20000010000000000000002 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		A20000010000000000000003 /* DemoFlows.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoFlows.swift; sourceTree = "<group>"; };
+		A20000010000000000000020 /* SendMoneyJourney.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendMoneyJourney.swift; sourceTree = "<group>"; };
 		A20000010000000000000004 /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Components.swift; sourceTree = "<group>"; };
 		A20000010000000000000005 /* DataBrowserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataBrowserView.swift; sourceTree = "<group>"; };
 		A20000010000000000000006 /* FlowRunnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlowRunnerView.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 			isa = PBXGroup;
 			children = (
 				A20000010000000000000003 /* DemoFlows.swift */,
+				A20000010000000000000020 /* SendMoneyJourney.swift */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 				A10000010000000000000001 /* PipeKitDemoApp.swift in Sources */,
 				A10000010000000000000002 /* ContentView.swift in Sources */,
 				A10000010000000000000003 /* DemoFlows.swift in Sources */,
+				A10000010000000000000020 /* SendMoneyJourney.swift in Sources */,
 				A10000010000000000000004 /* Components.swift in Sources */,
 				A10000010000000000000005 /* DataBrowserView.swift in Sources */,
 				A10000010000000000000006 /* FlowRunnerView.swift in Sources */,
